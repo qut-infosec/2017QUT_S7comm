@@ -1,0 +1,37 @@
+!#/usr/bin/gnuplot
+
+#	set terminal postscript eps color solid size 600, 400
+set terminal postscript eps color solid # size 1280,1024 # fname 'Times-Roman' fsize 10
+set output "ReactorLog.ps"
+#	set output "SCADA traffic.svg"
+set multiplot layout 2,1
+set yrange [:130]
+set xrange [:35000]
+#set logscale y
+set font "Times-Roman, 10" 
+set key font ",10"
+set xtics font "Times-Roman, 13"
+set ytics font "Times-Roman, 13"
+unset key
+
+#set x2tics nomirror
+#set format x2 ''
+#set x2tics add ("1.0" 2222.14159)
+#set x2tics add ("2.0" 3222.14159)
+
+set mxtics
+set xtics out
+set ytics out
+
+set title 'A) Reactor Log stats: Normal' font "Times-Roman, 13"
+set key
+set ylabel 'PSI' font "Times-Roman, 13"
+set xlabel 'Time in seconds (relative)' font "Times-Roman, 13"
+plot 'Control/Reactor_Log0_cut_Pipe_Read_Pipeline_Pressure_out.csv' title "Pressure" with line lt rgb "green", 'Control/Reactor_Log0_cut_HMI_Pipe_Solenoid_Off_SP_out.csv' title "Pump off" with line lt rgb "blue", 'Control/Reactor_Log0_cut_HMI_Pipe_Solenoid_On_SP_out.csv' title "Pump on" with line lt rgb "red";
+
+
+set title 'B) Reactor Log stats: Attack' font "Times-Roman, 13"
+set key
+set ylabel 'PSI' font "Times-Roman, 13"
+set xlabel 'Time in seconds (relative)' font "Times-Roman, 13"
+plot 'Attacks/Reactor_Log0_cut_Pipe_Read_Pipeline_Pressure_out.csv' title "Pressure" with line lt rgb "green", 'Attacks/Reactor_Log0_cut_HMI_Pipe_Solenoid_Off_SP_out.csv' title "Pump off" with line lt rgb "blue", 'Attacks/Reactor_Log0_cut_HMI_Pipe_Solenoid_On_SP_out.csv' title "Pump on" with line lt rgb "red";

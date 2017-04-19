@@ -1,0 +1,50 @@
+!#/usr/bin/gnuplot
+
+#	set terminal postscript eps color solid size 600, 400
+set terminal postscript eps color solid # size 1280,1024 # fname 'Times-Roman' fsize 10
+set output "SCADA_traffic.ps"
+#	set output "SCADA traffic.svg"
+
+set multiplot layout 3, 1 title '' font "Times-Roman, 13"
+set yrange [:10000]
+set xrange [:35000]
+set logscale y
+set font "Times-Roman, 10" 
+set key font ",10"
+set xtics font "Times-Roman, 13"
+set ytics font "Times-Roman, 13"
+set key horizontal 
+
+set tics out
+set mxtics
+
+set ylabel 'Frames/second' font "Times-Roman, 13"
+set xlabel 'Time in seconds (relative)' font "Times-Roman, 13"
+set title '(a) Master: Normal Traffic' font "Times-Roman, 13"
+plot 'tshark_control/master.pcap.LLDP.csv' u 1:2 title "LLDP" with line lt rgb "gold", 'tshark_control/master.pcap.TCP.csv' u 1:2 title "TCP" with line lt rgb "violet", 'tshark_control/master.pcap.S7COMM.csv' u 1:2 title "S7COMM" with line lt rgb "blue"
+
+unset key
+set title '(b) Master: Attack Traffic' font "Times-Roman, 13"
+plot 'tshark_attacks/master.pcap.LLDP.csv' u 1:2 title "LLDP" with line lt rgb "gold",  'tshark_attacks/master.pcap.TCP.csv' u 1:2 title "TCP" with line lt rgb "violet",  'tshark_attacks/master.pcap.S7COMM.csv' u 1:2 title "S7COMM" with line lt rgb "blue"
+
+set title '(c) Attacker: Attack Traffic' font "Times-Roman, 13"
+plot 'tshark_attacks/attacker.pcap.TCP.csv' u 1:2 title "TCP" with line lt rgb "violet", 'tshark_attacks/attacker.pcap.S7COMM.csv' u 1:2 title "S7COMM" with line lt rgb "blue"
+
+# set bmargin at screen 0
+# set key center center horizontal
+# set border 0 
+# unset xlabel
+# unset ylabel
+# unset y2label
+# unset label
+# unset logscale y
+# unset tics
+# set format x ""
+# set format y ""
+# 
+# set yrange [0:1]
+# plot    4 ls 1 linecolor rgb 'green' title "LLDP",\
+# 	4 ls 2 linecolor rgb 'violet' title "TCP",\
+#     4 ls 3 linecolor rgb 'blue' title "S7COMM",\
+#     4 ls 4 linecolor rgb 'orange' title "ARP"
+# unset multiplot

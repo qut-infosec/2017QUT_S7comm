@@ -1,0 +1,35 @@
+
+#	set terminal postscript eps color solid size 600, 400
+set terminal postscript eps color solid # size 1280,1024 # fname 'Times-Roman' fsize 10
+set output "TankLog.ps"
+#	set output "SCADA traffic.svg"
+set multiplot layout 2,1
+set yrange [:100]
+set xrange [:35000]
+#set logscale y
+set font "Times-Roman, 10" 
+set key font ",10"
+set xtics font "Times-Roman, 13"
+set ytics font "Times-Roman, 13"
+unset key
+
+#set x2tics nomirror
+#set format x2 ''
+#set x2tics add ("1.0" 2222.14159)
+#set x2tics add ("2.0" 3222.14159)
+
+set mxtics
+set xtics out
+set ytics out
+
+set title 'A) Tank Log stats: Normal' font "Times-Roman, 13"
+set key
+set ylabel ''
+set xlabel 'Time in seconds (relative)' font "Times-Roman, 13"
+plot 'Control/Tank_Log0_cut_Tank_Level_out.csv' title "Tank Level" with line lt rgb "green", 'Control/Tank_Log0_cut_Tank_Off_SP_Int_out.csv' title "Auto off" with line lt rgb "red", 'Control/Tank_Log0_cut_Tank_On_SP_Int_out.csv' title "Auto on" with line lt rgb "blue", 'Control/Tank_Log0_cut_Tank_Usage_Level_out.csv' title "Usage" with line lt rgb "gold"
+
+set title 'B) Tank Log stats: Attack' font "Times-Roman, 13"
+set key
+set ylabel ''
+set xlabel 'Time in seconds (relative)' font "Times-Roman, 13"
+plot 'Attacks/Tank_Log0_cut_Tank_Level_out.csv' title "Tank Level" with line lt rgb "green", 'Attacks/Tank_Log0_cut_Tank_Off_SP_Int_out.csv' title "Auto off" with line lt rgb "red", 'Attacks/Tank_Log0_cut_Tank_On_SP_Int_out.csv' title "Auto on" with line lt rgb "blue", 'Attacks/Tank_Log0_cut_Tank_Usage_Level_out.csv' title "Usage" with line lt rgb "gold"

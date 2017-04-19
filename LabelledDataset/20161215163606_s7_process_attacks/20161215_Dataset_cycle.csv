@@ -1,0 +1,31 @@
+Process,Conveyor,Wash tank,Reactor,,Solonid value,Notes
+1,,,,,,
+2,,,,,,
+3,,,,,,
+4,,,,,,
+5,,,,,,
+6,1,21,11,,35,
+7,2,22,12,,,
+8,"0, 1","21,20","11,10",,,
+9,"2,2","22,22",13,,25,
+10,2F,22F,12F,,45,
+11,0F,20F,10F,,,
+12,1F,,,,,"Trouble: Coveyor belt after completeting the flooding attack, the subprocess would not complete, neither after reset and start. We had to global reset "
+13,,21F,11F,,,
+14,20,10T,T,,,Trouble: starting reactor. Manually reset process 
+15,10T,,,,,"Trouble: starting reactor, had to manually hit stop button to start reactor"
+16,,,,,,Running entire process without violation
+17,,,,,,Running entire process without violation
+18,10,,P,,,Passed Reactor since it was done together with the Conveyor
+19,,10,P,,,Passed Reactor since it was done together with the Wash Tank
+20,"10,20",P,P,,,
+21,,"3,0","3,0",,,Observation: Reset needed before Conveyor Belt starts
+22,,"0,3,10",P,,,
+23,,,"3,0,20",,,"Observation: The lights indicates that the water tank process is complete but is also still in the middle of a process, (amber and green lights)"
+24,919,P,P,,,"Run 919 on finished conveyor process, but before water tank start."
+25,,919,P,,,"Run 919 on finished water tank process, but before reactor start."
+26,10,20,0,,,"Running entire process backwards, The required sub processes did not run and had no interactions from the HMI."
+27,3,,,,,Observation: Reset conveyor belt continued to run signifncatly over time. Conveyor belt subprocess is restarted by HMI
+28,911,,,,,
+29,,,,,,"Emergency stop by HMI, during coveyor subprocess"
+30,"1,0,2,22,10,12,13",,,,,Emergency stop by HMI
