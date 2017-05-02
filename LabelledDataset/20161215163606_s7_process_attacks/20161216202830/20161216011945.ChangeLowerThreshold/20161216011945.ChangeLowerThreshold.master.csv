@@ -1,0 +1,3 @@
+1,Ether / IP / TCP 10.10.10.66:37928 > 10.10.10.10:iso_tsap A / Padding,ChangeLowerThreshold
+70,Ether / IP / TCP 10.10.10.66:37928 > 10.10.10.10:iso_tsap PA / Raw,ChangeLowerThreshold
+72,Ether / IP / TCP 10.10.10.66:37928 > 10.10.10.10:iso_tsap A / Padding,ChangeLowerThreshold
